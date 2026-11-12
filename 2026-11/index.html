@@ -138,6 +138,123 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
 #t-dist td:last-child{min-width:15rem;white-space:normal}
 #t-dimot th,#t-dist th{line-height:1.3}
 #t-facts td.wrap{min-width:16rem;white-space:normal}
+
+/* ===== v3: дизайн ===== */
+.sf { grid-template-columns: minmax(0, 1fr); --sf-bar: 64px; --sf-tint: color-mix(in srgb, var(--sf-s1) 6%, var(--color-panel)); }
+.sf ::selection { background: color-mix(in srgb, var(--sf-s1) 24%, transparent); }
+.sf a:focus-visible, .sf button:focus-visible, .sf select:focus-visible, .sf [tabindex]:focus-visible { outline: 2px solid var(--sf-s1); outline-offset: 2px; border-radius: 4px; }
+.sf-section, .sf-oc { scroll-margin-top: calc(var(--sf-bar) + 16px); }
+.sf-head { gap: 14px; }
+.sf-lede { color: #2A3038; }
+
+/* Липка панель: район + розділи */
+.sf-filter { flex-wrap: nowrap; gap: 16px; padding-block: 10px; background: color-mix(in srgb, var(--color-bg) 88%, transparent); -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px); }
+.sf-filter .zf { display: flex; align-items: center; gap: 8px; flex: none; min-width: 0; }
+.sf-filter select { min-width: 0; text-overflow: ellipsis; }
+.sf-filter select { padding: 6px 30px 6px 10px; appearance: none; -webkit-appearance: none; background: var(--color-panel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%235C636D' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E") no-repeat right 10px center; cursor: pointer; max-width: 22rem; }
+.sf-filter select:hover { border-color: var(--cds-chart-axis); }
+.sf-filter .sf-toc { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; justify-content: flex-end; padding-block: 2px; }
+.sf-filter .sf-toc::-webkit-scrollbar { display: none; }
+.sf-toc a { white-space: nowrap; padding: 5px 12px; background: var(--color-panel); transition: color .15s, background-color .15s, border-color .15s; }
+.sf-toc a[aria-current="true"] { background: var(--color-fg); border-color: var(--color-fg); color: #fff; }
+.sf-fnote { margin-top: calc(-1 * var(--cds-gap-xl) + 10px) !important; max-width: none !important; }
+@media (max-width: 900px) {
+  .sf-filter { flex-wrap: wrap; row-gap: 8px; padding-block: 8px; }
+  .sf-filter .zf { flex: 1 1 100%; }
+  .sf-filter select { flex: 1; max-width: none; font-size: 16px; }
+  .sf-filter .sf-toc { flex-basis: 100%; justify-content: flex-start; margin-inline: calc(-1 * clamp(16px, 3vw, 40px)); padding-inline: clamp(16px, 3vw, 40px); scroll-padding-inline: clamp(16px, 3vw, 40px); -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 28px), transparent 100%); mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 28px), transparent 100%); }
+}
+
+/* Картки об’єктів з фото */
+.sf-cards { gap: 20px; }
+.sf-oc { padding: 0; gap: 0; overflow: hidden; transition: box-shadow .2s ease-out, border-color .2s ease-out; }
+.sf-oc:hover { border-color: var(--cds-border); box-shadow: 0 8px 24px -12px rgba(20, 24, 30, .18); }
+.sf-oc .bd { display: grid; gap: 14px; padding: 18px 22px 22px; align-content: start; }
+.sf-oc h3 { font-size: 19px; letter-spacing: -.005em; margin: 0; }
+.sf-oc .media { position: relative; aspect-ratio: 4 / 3; background: #ECECE6; }
+.sf-oc .track { display: flex; height: 100%; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; border-radius: 0; }
+.sf-oc .track::-webkit-scrollbar { display: none; }
+.sf-oc .track:focus-visible { outline-offset: -3px; }
+.sf-oc .track img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start; scroll-snap-stop: always; cursor: zoom-in; display: block; }
+.sf-oc .gbtn { position: absolute; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .92); color: var(--color-fg); box-shadow: 0 2px 8px rgba(20, 24, 30, .22); cursor: pointer; transition: opacity .2s ease-out, transform .2s ease-out; }
+.sf-oc .gbtn svg { width: 18px; height: 18px; }
+.sf-oc .gbtn.pv { left: 10px; top: 50%; translate: 0 -50%; }
+.sf-oc .gbtn.nx { right: 10px; top: 50%; translate: 0 -50%; }
+.sf-oc .gbtn.zoom { right: 10px; top: 10px; width: 32px; height: 32px; }
+.sf-oc .gbtn.zoom svg { width: 16px; height: 16px; }
+.sf-oc .gbtn:disabled { opacity: 0 !important; pointer-events: none; }
+.sf-oc .gbtn:active { transform: scale(.94); }
+@media (hover: hover) {
+  .sf-oc .gbtn.pv, .sf-oc .gbtn.nx { opacity: 0; }
+  .sf-oc .media:hover .gbtn, .sf-oc .media:focus-within .gbtn { opacity: 1; }
+}
+@media (hover: none) { .sf-oc .gbtn.pv, .sf-oc .gbtn.nx { display: none; } }
+.sf-oc .dots { position: absolute; left: 50%; bottom: 10px; translate: -50% 0; display: flex; gap: 6px; padding: 5px 8px; border-radius: 999px; background: rgba(20, 24, 30, .38); pointer-events: none; }
+.sf-oc .dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .55); transition: background-color .2s, scale .2s; }
+.sf-oc .dots i.on { background: #fff; scale: 1.25; }
+.sf-oc .meta { line-height: 1.45; }
+.sf-oc .fc { display: grid; grid-template-columns: 1fr 1fr; background: var(--sf-tint); border: 1px solid color-mix(in srgb, var(--sf-s1) 14%, var(--color-border-line)); border-radius: var(--cds-radius); }
+.sf-oc .fc > div { padding: 12px 14px; display: grid; gap: 2px; align-content: start; }
+.sf-oc .fc > div + div { border-left: 1px solid color-mix(in srgb, var(--sf-s1) 14%, var(--color-border-line)); }
+.sf-oc .fc .cap { font-size: 12px; color: #3E5470; font-weight: 600; letter-spacing: .01em; }
+.sf-oc .fc .big { font-size: 28px; color: var(--color-fg); margin: 2px 0 0; }
+.sf-oc .fc .unit { font-size: 12px; color: #4F6278; }
+.sf-oc .row { padding-block: 0; gap: 0; }
+.sf-oc .row > span:nth-child(odd) { padding-right: 12px; }
+.sf-oc .row > span span { padding: 0 !important; border: 0 !important; color: inherit !important; font-weight: inherit !important; }
+.sf-oc .row > span { padding-block: 6px; border-bottom: 1px solid var(--color-border-line); line-height: 1.35; }
+.sf-oc .row > span:nth-last-child(-n+2) { border-bottom: 0; }
+.sf-oc .row > span:nth-child(even) { color: var(--color-fg); font-weight: 600; white-space: nowrap; align-self: end; }
+.sf-oc .links { padding-top: 14px; border-top: 1px solid var(--color-border-line); gap: 8px 20px; }
+.sf-oc .links a { font-weight: 600; }
+
+/* Лайтбокс */
+.sf-lb { border: 0; padding: 0; margin: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; background: rgba(10, 12, 16, .95); color: #fff; overflow: hidden; }
+.sf-lb::backdrop { background: rgba(12, 14, 18, .92); }
+.sf-lb[open] { display: grid; grid-template-rows: 1fr auto; animation: sf-lb-in .28s cubic-bezier(.16, 1, .3, 1); }
+@keyframes sf-lb-in { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: none; } }
+.sf-lb figure { margin: 0; display: grid; place-items: center; min-height: 0; padding: 56px 72px 0; }
+.sf-lb img { max-width: 100%; max-height: calc(100dvh - 120px); object-fit: contain; border-radius: 6px; box-shadow: 0 20px 60px -20px rgba(0, 0, 0, .6); user-select: none; -webkit-user-drag: none; }
+.sf-lb .cap { text-align: center; font-size: 13px; color: rgba(255, 255, 255, .78); padding: 14px 16px calc(18px + env(safe-area-inset-bottom)); font-variant-numeric: tabular-nums; }
+.sf-lb .cap b { color: #fff; font-weight: 600; }
+.sf-lb button { position: absolute; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .12); color: #fff; cursor: pointer; transition: background-color .15s; }
+.sf-lb button:hover { background: rgba(255, 255, 255, .22); }
+.sf-lb button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.sf-lb button svg { width: 22px; height: 22px; }
+.sf-lb .x { top: calc(12px + env(safe-area-inset-top)); right: 12px; }
+.sf-lb .pv { left: 14px; top: 50%; translate: 0 -50%; }
+.sf-lb .nx { right: 14px; top: 50%; translate: 0 -50%; }
+@media (max-width: 640px) {
+  .sf-lb figure { padding: 60px 0 0; }
+  .sf-lb img { border-radius: 0; }
+  .sf-lb .cap { padding-inline: 68px; }
+  .sf-lb .pv, .sf-lb .nx { top: auto; bottom: calc(6px + env(safe-area-inset-bottom)); translate: none; }
+}
+
+/* Таблиці: мініатюри в «Оцінці», липка перша колонка на вузьких екранах, тінь прокрутки */
+#t-liq td.objc a { display: flex; align-items: center; gap: 10px; }
+#t-liq td.objc img { width: 56px; height: 42px; object-fit: cover; border-radius: 4px; flex: none; background: #ECECE6; }
+#t-liq td:first-child { min-width: 12rem; }
+.sf-tablewrap { background: linear-gradient(to left, var(--color-panel) 30%, rgba(255,255,255,0)) right / 32px 100% no-repeat local, radial-gradient(farthest-side at 100% 50%, rgba(20,24,30,.14), rgba(20,24,30,0)) right / 12px 100% no-repeat scroll; }
+.sf tbody tr:hover td { background-color: color-mix(in srgb, var(--sf-s1) 3%, var(--color-panel)); }
+@media (max-width: 760px) {
+  .sf-tablewrap { margin-inline: -4px; }
+  .sf-tablewrap th:first-child, .sf-tablewrap td:first-child { position: sticky; left: 0; z-index: 1; background: var(--color-panel); box-shadow: 1px 0 0 var(--color-border-line); padding-right: 10px; }
+  .sf tbody tr:hover td { background-color: transparent; }
+  .sf-tablewrap td:first-child { background: var(--color-panel) !important; }
+  #t-liq td:first-child { min-width: 7.5rem; max-width: 8.5rem; }
+  #t-liq td.objc a { display: grid; gap: 6px; }
+  #t-liq td.objc img { width: 72px; height: 54px; }
+  #t-liq td.wrap { min-width: 24rem; }
+  .sf-card { padding: 16px; }
+  .sf-oc .bd { padding: 16px 16px 20px; }
+  .sf-oc .fc .big { font-size: 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sf-lb[open] { animation: none; }
+  .sf-oc, .sf-oc .gbtn, .sf-oc .dots i { transition: none; }
+}
+
 </style>
 </head>
 <body>
@@ -145,17 +262,18 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
   <header class="sf-head" id="top">
     <h1>Ринок оренди Софії: 13 апартаментів</h1>
     <p class="sf-lede">Об’єкти добірки продаються на рівні ринку: відхилення від медіани нових мебльованих апартаментів району (у Дружбі 2 і в Овча купел — від −7% до +2%, №12 — +3%) не виходять за межі похибки бази. Найвища дохідність — у Дружбі 2: валова 3,5–4,1%. Головний ризик для перепродажу — будинки, що будуються, по ~2 200 €/м²: в Овча купел це три чверті оголошень, у Дружбі 2 й Манастирски ливади — близько половини. Чиста дохідність — 2,1–3,0% залежно від припущень. За місяць медіани ставок оренди й цін пропозиції в Софії не змінилися.</p>
-    <nav class="sf-toc" aria-label="Розділи">
-      <a href="#assessment">Оцінка об’єктів</a><a href="#forecast">Прогноз для об’єктів</a><a href="#city">Місто</a><a href="#districts">Райони</a><a href="#check">Звірка</a><a href="#rent">Оренда та аналоги</a><a href="#liquidity">Ліквідність</a><a href="#method">Методика</a>
-    </nav>
   </header>
 
   <div class="sf-filter" id="filter">
-    <label for="sf-zone">Район</label>
+    <div class="zf"><label for="sf-zone">Район</label>
     <select id="sf-zone" class="sf-zone"></select>
-    <button type="button" id="sf-reset" hidden>Скинути</button>
-    <span class="muted" id="sf-filter-note">Фільтр діє на розділи «Оцінка об’єктів», «Прогноз для об’єктів», «Райони», «Оренда та аналоги» і «Ліквідність». Блок «Місто» — по всій Софії.</span>
+    <button type="button" id="sf-reset" hidden>Скинути</button></div>
+    <nav class="sf-toc" aria-label="Розділи">
+      <a href="#assessment">Оцінка об’єктів</a><a href="#forecast">Прогноз для об’єктів</a><a href="#city">Місто</a><a href="#districts">Райони</a><a href="#check">Звірка</a><a href="#rent">Оренда та аналоги</a><a href="#liquidity">Ліквідність</a><a href="#method">Методика</a>
+    </nav>
   </div>
+
+  <p class="muted sf-fnote" id="sf-filter-note">Фільтр діє на розділи «Оцінка об’єктів», «Прогноз для об’єктів», «Райони», «Оренда та аналоги» і «Ліквідність». Блок «Місто» — по всій Софії.</p>
 
   <section class="sf-section" id="summary">
     <div class="sf-card">
@@ -191,7 +309,7 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
 
   <section class="sf-section" id="forecast">
     <header><h2>Прогноз для об’єктів</h2>
-      <p class="muted">Ставка довгострокової оренди з меблями зараз і через 12 місяців. Зараз — базовий діапазон за цінами оголошень; обережна ставка (на 5% нижча за нижню межу — на випадок торгу з орендарем) — у таблиці «Прогноз оренди та дохідність». Через 12 місяців: нижня межа — без зростання, верхня — +2,5% (зміна за рік за alo.bg). Дохідність валова — до ціни оголошення; чиста — після простою, податку, внесків, з витратами на купівлю й меблі (поточний сценарій; строгий — у таблиці, припущення — у «Методиці»).</p>
+      <p class="muted">Ставка довгострокової оренди з меблями зараз і через 12 місяців. Зараз — базовий діапазон за цінами оголошень; обережна ставка (на 5% нижча за нижню межу — на випадок торгу з орендарем) — у таблиці «Прогноз оренди та дохідність». Через 12 місяців: нижня межа — без зростання, верхня — +2,5% (зміна за рік за alo.bg). Фото — з оголошень; натисніть на фото, щоб переглянути на весь екран. Дохідність валова — до ціни оголошення; чиста — після простою, податку, внесків, з витратами на купівлю й меблі (поточний сценарій; строгий — у таблиці, припущення — у «Методиці»).</p>
     </header>
     <div class="sf-cards" id="sf-cards"></div>
   </section>
@@ -555,9 +673,10 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
     const W = box.clientWidth || 600, bandH = objs.length > 3 ? 36 : 56, H = objs.length * bandH + 34;
     box.style.minHeight = H + 'px';
     const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Оренда аналогів і прогноз для об’єктів');
-    const labels = objs.map((o) => o.label);
+    const short = W < 560, lab = (o) => (short ? '№' + o.n : o.label);
+    const labels = objs.map(lab);
     const left = Math.ceil(measure(svg, labels, 'lbl')) + 14;
-    const xmax = Math.min(1600, d3.max(pts, (p) => p.rent));
+    const xmax = Math.min(short ? 1200 : 1600, d3.max(pts, (p) => p.rent));
     const x = d3.scaleLinear([300, xmax], [left, W - 14]).nice();
     const y = d3.scaleBand(objs.map((o) => o.n), [8, H - 26]).paddingInner(0.2);
     svg.append('g').selectAll('line').data(x.ticks(W < 500 ? 4 : 8)).join('line')
@@ -565,7 +684,7 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
     svg.append('g').selectAll('text').data(x.ticks(W < 500 ? 4 : 8)).join('text')
       .attr('x', (d) => x(d)).attr('y', H - 8).attr('text-anchor', 'middle').text((d) => fInt(d) + ' €');
     svg.append('g').selectAll('text').data(objs).join('text').attr('class', 'lbl')
-      .attr('x', left - 10).attr('y', (o) => y(o.n) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text((o) => o.label);
+      .attr('x', left - 10).attr('y', (o) => y(o.n) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text(lab);
     svg.append('g').selectAll('rect').data(objs).join('rect')
       .attr('x', (o) => x(o.rent_lo)).attr('width', (o) => Math.max(3, x(o.rent_hi) - x(o.rent_lo)))
       .attr('y', (o) => y(o.n)).attr('height', y.bandwidth()).attr('rx', 4)
@@ -593,23 +712,23 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
   function hbars(boxId, rows, valueOf, labelOf, opts) {
     const box = document.getElementById(boxId);
     box.replaceChildren();
-    const W = box.clientWidth || 500, barH = 22, gap = 8, H = rows.length * (barH + gap) + 26;
+    const W = box.clientWidth || 500, barH = 22, gap = 8, narrow = W < 520, rowH = barH + gap + (narrow ? 18 : 0), H = rows.length * rowH + 26;
     const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', opts.aria);
-    const left = Math.ceil(measure(svg, rows.map(labelOf), 'lbl')) + 12;
+    const left = narrow ? 0 : Math.ceil(measure(svg, rows.map(labelOf), 'lbl')) + 12;
     const valTexts = rows.map((r) => opts.valText(r));
     const right = Math.ceil(measure(svg, valTexts)) + 10;
     const vals = rows.map(valueOf);
     const lo = Math.min(0, d3.min(vals)), hi = Math.max(0, d3.max(vals));
     const x = d3.scaleLinear([lo, hi], [left + (lo < 0 ? right : 0), W - right]).nice();
-    const y = (i) => 4 + i * (barH + gap);
+    const y = (i) => 4 + i * rowH + (narrow ? 18 : 0);
     svg.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', 0).attr('y2', H - 22).attr('stroke', 'var(--cds-chart-axis)');
     const g = svg.append('g').selectAll('g').data(rows).join('g');
-    g.append('text').attr('class', 'lbl').attr('x', left - 8).attr('y', (r, i) => y(i) + barH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text(labelOf);
+    g.append('text').attr('class', 'lbl').attr('x', narrow ? 0 : left - 8).attr('y', (r, i) => (narrow ? y(i) - 6 : y(i) + barH / 2)).attr('dy', narrow ? 0 : '0.35em').attr('text-anchor', narrow ? 'start' : 'end').text(labelOf);
     g.append('rect').attr('x', (r) => Math.min(x(0), x(valueOf(r)))).attr('width', (r) => Math.max(1, Math.abs(x(valueOf(r)) - x(0))))
       .attr('y', (r, i) => y(i)).attr('height', barH).attr('rx', 4).attr('fill', opts.color);
     g.append('text').attr('x', (r) => (valueOf(r) >= 0 ? x(valueOf(r)) + 6 : x(valueOf(r)) - 6)).attr('y', (r, i) => y(i) + barH / 2).attr('dy', '0.35em')
       .attr('text-anchor', (r) => (valueOf(r) >= 0 ? 'start' : 'end')).text((r, i) => valTexts[i]);
-    svg.append('g').selectAll('text').data(x.ticks(4)).join('text').attr('x', (d) => x(d)).attr('y', H - 4).attr('text-anchor', 'middle').text(opts.tick);
+    svg.append('g').selectAll('text').data(x.ticks(Math.max(2, Math.min(4, Math.floor((W - right - left) / 64))))).join('text').attr('x', (d) => x(d)).attr('y', H - 4).attr('text-anchor', 'middle').text(opts.tick);
   }
 
   function drawDistricts() {
@@ -650,6 +769,81 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
   function mark(text, source, field, label, kind) {
     const s = mk('span', null, fmt(text, kind)); s.dataset.source = source; s.dataset.field = field; s.dataset.where = 'label=' + String(label).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D'); if (kind) s.dataset.fmt = kind; return s;
   }
+
+  // ===== v3: фото, лайтбокс, навігація =====
+  const PHOTOS = {"1": 5, "2": 5, "3": 5, "4": 5, "5": 5, "6": 5, "7": 5, "8": 5, "9": 5, "10": 5, "11": 5, "12": 5, "13": 5};
+  const ICON = {"l": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 6l-6 6 6 6\"/></svg>", "r": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6l6 6-6 6\"/></svg>", "x": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg>", "z": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7\"/></svg>"};
+  const phSrc = (n, i, small) => 'img/' + n + '-' + i + (small ? '-s' : '') + '.jpg';
+  const svgBtn = (cls, label, icon) => { const b = mk('button', 'gbtn ' + cls); b.type = 'button'; b.setAttribute('aria-label', label); b.innerHTML = ICON[icon]; return b; };
+  const lb = (() => {
+    const d = mk('dialog', 'sf-lb'); d.setAttribute('aria-label', 'Перегляд фото');
+    const fig = mk('figure'); const img = mk('img'); img.alt = ''; fig.append(img);
+    const cap = mk('div', 'cap');
+    const x = mk('button', 'x'); x.type = 'button'; x.setAttribute('aria-label', 'Закрити'); x.innerHTML = ICON.x;
+    const pv = mk('button', 'pv'); pv.type = 'button'; pv.setAttribute('aria-label', 'Попереднє фото'); pv.innerHTML = ICON.l;
+    const nx = mk('button', 'nx'); nx.type = 'button'; nx.setAttribute('aria-label', 'Наступне фото'); nx.innerHTML = ICON.r;
+    d.append(fig, cap, x, pv, nx); document.getElementById('sf').append(d);
+    let cur = null, i = 0, n = 0;
+    const show = () => {
+      img.src = phSrc(cur.n, i, false); img.alt = cur.label + ', фото ' + (i + 1) + ' з ' + n;
+      cap.replaceChildren(mk('b', null, cur.label), ' · фото ' + (i + 1) + ' з ' + n + ' · з оголошення на ' + (cur.source === 'Явлена' ? 'yavlena.com' : 'imot.bg'));
+      pv.disabled = n < 2; nx.disabled = n < 2;
+      new Image().src = phSrc(cur.n, (i + 1) % n, false);
+    };
+    const step = (s) => { i = (i + s + n) % n; show(); };
+    pv.addEventListener('click', () => step(-1)); nx.addEventListener('click', () => step(1)); x.addEventListener('click', () => d.close());
+    d.addEventListener('click', (e) => { if (e.target === d || e.target === fig) d.close(); });
+    d.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); } else if (e.key === 'ArrowRight') { e.preventDefault(); step(1); } });
+    let tx = null;
+    d.addEventListener('touchstart', (e) => { tx = e.touches[0].clientX; }, { passive: true });
+    d.addEventListener('touchend', (e) => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(dx) > 45) step(dx < 0 ? 1 : -1); }, { passive: true });
+    let back = null;
+    d.addEventListener('close', () => { if (back) back.focus({ preventScroll: true }); });
+    return { open(o, k, from) { cur = o; n = PHOTOS[o.n] || 0; i = k; back = from || null; show(); d.showModal(); x.focus({ preventScroll: true }); } };
+  })();
+  function gallery(o) {
+    const n = PHOTOS[o.n] || 0;
+    const m = mk('div', 'media'); if (!n) { m.hidden = true; return m; }
+    const tr = mk('div', 'track'); tr.tabIndex = 0; tr.setAttribute('role', 'group'); tr.setAttribute('aria-label', 'Фото: ' + o.label + ' (стрілки — гортати, Enter — на весь екран)');
+    for (let i = 0; i < n; i++) {
+      const im = mk('img'); im.loading = 'lazy'; im.decoding = 'async'; im.width = 720; im.height = 540;
+      im.src = phSrc(o.n, i, true); im.srcset = phSrc(o.n, i, true) + ' 720w, ' + phSrc(o.n, i, false) + ' 1400w'; im.sizes = '(max-width: 640px) 100vw, 460px';
+      im.alt = o.label + ', фото ' + (i + 1) + ' з ' + n;
+      im.addEventListener('click', () => lb.open(o, i, tr));
+      tr.append(im);
+    }
+    const dots = mk('div', 'dots'); for (let i = 0; i < n; i++) dots.append(mk('i'));
+    const pv = svgBtn('pv', 'Попереднє фото', 'l'), nx = svgBtn('nx', 'Наступне фото', 'r'), zm = svgBtn('zoom', 'Відкрити фото на весь екран', 'z');
+    const idx = () => Math.round(tr.scrollLeft / Math.max(1, tr.clientWidth));
+    const go = (s) => tr.scrollTo({ left: Math.max(0, Math.min(n - 1, idx() + s)) * tr.clientWidth, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    const sync = () => { const k = idx(); [...dots.children].forEach((d, j) => d.classList.toggle('on', j === k)); pv.disabled = k === 0; nx.disabled = k === n - 1; };
+    pv.addEventListener('click', () => go(-1)); nx.addEventListener('click', () => go(1)); zm.addEventListener('click', () => lb.open(o, idx(), zm));
+    tr.addEventListener('scroll', sync, { passive: true });
+    tr.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } else if (e.key === 'ArrowRight') { e.preventDefault(); go(1); } else if (e.key === 'Enter') { e.preventDefault(); lb.open(o, idx(), tr); } });
+    m.append(tr, pv, nx, zm, dots); sync();
+    return m;
+  }
+  const objThumb = (td, v, r) => {
+    td.className = 'objc'; const a = mk('a', 'obj'); a.href = '#obj-' + r.n; a.title = 'До картки з фото й прогнозом';
+    if (PHOTOS[r.n]) { const im = mk('img'); im.src = phSrc(r.n, 0, true); im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; im.width = 56; im.height = 42; a.append(im); }
+    a.append(mk('span', null, v)); td.append(a);
+  };
+  (() => {
+    const bar = document.getElementById('filter'), root = document.getElementById('sf');
+    const setH = () => root.style.setProperty('--sf-bar', bar.offsetHeight + 'px');
+    setH(); if (window.ResizeObserver) new ResizeObserver(setH).observe(bar);
+    const nav = bar.querySelector('.sf-toc'); if (!nav || !window.IntersectionObserver) return;
+    const links = [...nav.querySelectorAll('a[href^="#"]')];
+    const secs = links.map((a) => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+    const vis = new Map();
+    const pick = () => {
+      let best = null; secs.forEach((s) => { if (vis.get(s.id)) best = best || s; });
+      if (!best && nav.scrollLeft) nav.scrollTo({ left: 0, behavior: 'smooth' });
+      links.forEach((a) => { const on = best && a.getAttribute('href') === '#' + best.id; if (on) { a.setAttribute('aria-current', 'true'); const l = a.offsetLeft - nav.offsetLeft, r = l + a.offsetWidth; if (l < nav.scrollLeft || r > nav.scrollLeft + nav.clientWidth) nav.scrollTo({ left: l - 24, behavior: 'smooth' }); } else a.removeAttribute('aria-current'); });
+    };
+    const io = new IntersectionObserver((es) => { es.forEach((e) => vis.set(e.target.id, e.isIntersecting)); pick(); }, { rootMargin: '-' + (bar.offsetHeight + 20) + 'px 0px -55% 0px' });
+    secs.forEach((s) => io.observe(s));
+  })();
   function drawCards() {
     const box = document.getElementById('sf-cards');
     if (st('objects') !== 'ok' || st('forecast12') !== 'ok') { failLine(box, st('objects') !== 'ok' ? 'objects' : 'forecast12'); return; }
@@ -658,31 +852,34 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
     rowsOf('objects').filter(inZone).forEach((o) => {
       const f = f12.find((x) => x.label === o.label) || {};
       const c = mk('article', 'sf-oc'); c.id = 'obj-' + o.n;
-      const h = mk('h3'); h.append(mark(o.label, 'objects', 'label', o.label)); c.append(h);
-      const lk = mk('div', 'links');
-      const ext = (href, text) => { const a = mk('a', null, text); a.href = href; a.target = '_blank'; a.rel = 'noopener'; return a; };
-      lk.append(ext(o.ad, 'Оголошення на ' + (o.source === 'Явлена' ? 'yavlena.com' : 'imot.bg') + ' ↗'));
-      lk.append(ext(o.map, 'Мапа ↗'));
-      c.append(lk);
-      const meta = mk('div', 'meta'); meta.append(mark(o.type, 'objects', 'type', o.label), ' · ', mark(o.area, 'objects', 'area', o.label, 'int'), ' м² · ', mark(o.price, 'objects', 'price', o.label, 'int'), ' € · ', mark(o.ppm, 'objects', 'ppm', o.label, 'int'), ' €/м²'); c.append(meta);
-      if (o.furniture) { const fm = mk('div', 'meta'); fm.append('Плюс меблі: ', mark(o.furniture, 'objects', 'furniture', o.label, 'int'), ' € (оцінка, враховано в чистій дохідності)'); c.append(fm); }
-      const now = mk('div'); now.append(mk('div', 'meta', 'Оренда зараз, € на місяць'));
-      const b1 = mk('div', 'big'); b1.append(mark(o.rent_lo, 'objects', 'rent_lo', o.label, 'int'), '–', mark(o.rent_hi, 'objects', 'rent_hi', o.label, 'int')); now.append(b1); c.append(now);
-      const nx = mk('div'); nx.append(mk('div', 'meta', 'Через 12 місяців, € на місяць'));
-      const b2 = mk('div', 'big'); b2.append(mark(f.rent12_lo, 'forecast12', 'rent12_lo', o.label, 'int'), '–', mark(f.rent12_hi, 'forecast12', 'rent12_hi', o.label, 'int')); nx.append(b2); c.append(nx);
+      c.append(gallery(o));
+      const bd = mk('div', 'bd'); c.append(bd);
+      const h = mk('h3'); h.append(mark(o.label, 'objects', 'label', o.label)); bd.append(h);
+      const meta = mk('div', 'meta'); meta.append(mark(o.type, 'objects', 'type', o.label), ' · ', mark(o.area, 'objects', 'area', o.label, 'int'), ' м² · ', mark(o.price, 'objects', 'price', o.label, 'int'), ' € · ', mark(o.ppm, 'objects', 'ppm', o.label, 'int'), ' €/м²'); bd.append(meta);
+      if (o.furniture) { const fm = mk('div', 'meta'); fm.append('Плюс меблі: ', mark(o.furniture, 'objects', 'furniture', o.label, 'int'), ' € (оцінка, враховано в чистій дохідності)'); bd.append(fm); }
+      const fc = mk('div', 'fc');
+      const now = mk('div'); now.append(mk('div', 'cap', 'Оренда зараз'));
+      const b1 = mk('div', 'big'); b1.append(mark(o.rent_lo, 'objects', 'rent_lo', o.label, 'int'), '–', mark(o.rent_hi, 'objects', 'rent_hi', o.label, 'int')); now.append(b1, mk('div', 'unit', '€ на місяць'));
+      const nx = mk('div'); nx.append(mk('div', 'cap', 'Через 12 місяців'));
+      const b2 = mk('div', 'big'); b2.append(mark(f.rent12_lo, 'forecast12', 'rent12_lo', o.label, 'int'), '–', mark(f.rent12_hi, 'forecast12', 'rent12_hi', o.label, 'int')); nx.append(b2, mk('div', 'unit', '€ на місяць'));
+      fc.append(now, nx); bd.append(fc);
       const r = mk('div', 'row');
       const g1 = mk('span'); g1.append(mark(o.gross_lo, 'objects', 'gross_lo', o.label, '1'), '–', mark(o.gross_hi, 'objects', 'gross_hi', o.label, '1'), '%');
       const g2 = mk('span'); g2.append(mark(f.gross12_lo, 'forecast12', 'gross12_lo', o.label, '1'), '–', mark(f.gross12_hi, 'forecast12', 'gross12_hi', o.label, '1'), '%');
       const g3 = mk('span'); g3.append(mark(o.net_strict, 'objects', 'net_strict', o.label, '1'), '–', mark(o.net_mid, 'objects', 'net_mid', o.label, '1'), '%');
       const g4 = mk('span'); g4.append(mark(o.prem_h_med, 'objects', 'prem_h_med', o.label, 'int'), ' € / ', mark(o.prem_i_med, 'objects', 'prem_i_med', o.label, 'int'), ' €');
-      r.append(mk('span', null, 'Валова дохідність зараз'), g1, mk('span', null, 'Через 12 місяців'), g2, mk('span', null, 'Чиста: строгий – поточний сценарій'), g3, mk('span', null, 'Новобудови й люкс в оренді: homes.bg / imot.bg'), g4);
-      c.append(r);
+      r.append(mk('span', null, 'Валова дохідність зараз'), g1, mk('span', null, 'Валова через 12 місяців'), g2, mk('span', null, 'Чиста: строгий – поточний сценарій'), g3, mk('span', null, 'Новобудови й люкс в оренді: homes.bg / imot.bg'), g4);
+      bd.append(r);
       const ch = mk('div', 'chips');
       const a = mk('span', 'chip'); a.dataset.l = o.liq_rent; a.append('Оренда: ', mark(o.liq_rent, 'objects', 'liq_rent', o.label));
       const b = mk('span', 'chip'); b.dataset.l = o.liq_resale; b.append('Перепродаж: ', mark(o.liq_resale, 'objects', 'liq_resale', o.label));
       const cf = mk('span', 'chip conf'); cf.append('Впевненість: ', mark(o.confidence, 'objects', 'confidence', o.label));
-      ch.append(a, b, cf); c.append(ch);
-      const p = mk('p'); p.append(mark(o.why, 'objects', 'why', o.label)); c.append(p);
+      ch.append(a, b, cf); bd.append(ch);
+      const p = mk('p'); p.append(mark(o.why, 'objects', 'why', o.label)); bd.append(p);
+      const lk = mk('div', 'links');
+      const ext = (href, text) => { const el = mk('a', null, text); el.href = href; el.target = '_blank'; el.rel = 'noopener'; return el; };
+      lk.append(ext(o.ad, 'Оголошення на ' + (o.source === 'Явлена' ? 'yavlena.com' : 'imot.bg') + ' ↗'), ext(o.map, 'Мапа ↗'));
+      bd.append(lk);
       box.appendChild(c);
     });
   }
@@ -694,7 +891,7 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
     fillTable('t-ext', { cell: { source: (td, v, r) => { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = v; a.style.color = 'inherit'; td.appendChild(a); } } });
     fillTable('t-dist', { filter: (r) => inZone(r) || r.benchmark, rowClass: (r) => (r.benchmark ? 'bench' : ''), fmt: { rent1_ppm: '1', yield1: '1', yield2: '1' } });
     fillTable('t-obj', { filter: inZone, cell: { label: objLink }, fmt: { gross_lo: '1', gross_hi: '1', net_mid: '1', net_strict: '1' } });
-    fillTable('t-liq', { filter: inZone, cell: { label: objLink, liq_rent: chip, liq_resale: chip, confidence: (td, v) => { td.className = 'conf'; td.textContent = v; }, why: (td, v) => { td.className = 'wrap'; td.textContent = v; }, dev_pct: (td, v) => { td.className = 'n'; td.textContent = fmt(v, 'signed').replace(',0', ''); } } });
+    fillTable('t-liq', { filter: inZone, cell: { label: objThumb, liq_rent: chip, liq_resale: chip, confidence: (td, v) => { td.className = 'conf'; td.textContent = v; }, why: (td, v) => { td.className = 'wrap'; td.textContent = v; }, dev_pct: (td, v) => { td.className = 'n'; td.textContent = fmt(v, 'signed').replace(',0', ''); } } });
     fillTable('t-links', { filter: inZone, cell: { map: link, ad: link } });
     fillTable('t-ass', {});
     fillTable('t-dimot', { filter: inZone, rowClass: (r) => (r.sub ? 'sub' : ''), cell: { alo_yoy: (td, v) => { td.className = 'n'; td.textContent = v === null ? '—' : fmt(v, 'signed'); } } });
