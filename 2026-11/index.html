@@ -806,8 +806,8 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
     const m = mk('div', 'media'); if (!n) { m.hidden = true; return m; }
     const tr = mk('div', 'track'); tr.tabIndex = 0; tr.setAttribute('role', 'group'); tr.setAttribute('aria-label', 'Фото: ' + o.label + ' (стрілки — гортати, Enter — на весь екран)');
     for (let i = 0; i < n; i++) {
-      const im = mk('img'); im.loading = 'lazy'; im.decoding = 'async'; im.width = 720; im.height = 540;
-      im.src = phSrc(o.n, i, true); im.srcset = phSrc(o.n, i, true) + ' 720w, ' + phSrc(o.n, i, false) + ' 1400w'; im.sizes = '(max-width: 640px) 100vw, 460px';
+      const im = mk('img'); im.loading = 'lazy'; im.decoding = 'async'; im.width = 900; im.height = 675;
+      im.src = phSrc(o.n, i, true); im.srcset = phSrc(o.n, i, true) + ' 900w, ' + phSrc(o.n, i, false) + ' 1400w'; im.sizes = '(max-width: 640px) 100vw, 460px';
       im.alt = o.label + ', фото ' + (i + 1) + ' з ' + n;
       im.addEventListener('click', () => lb.open(o, i, tr));
       tr.append(im);
