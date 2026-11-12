@@ -153,12 +153,14 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
 .sf-filter select { min-width: 0; text-overflow: ellipsis; }
 .sf-filter select { padding: 6px 30px 6px 10px; appearance: none; -webkit-appearance: none; background: var(--color-panel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%235C636D' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E") no-repeat right 10px center; cursor: pointer; max-width: 22rem; }
 .sf-filter select:hover { border-color: var(--cds-chart-axis); }
-.sf-filter .sf-toc { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; justify-content: flex-end; padding-block: 2px; }
+.sf-filter .sf-toc { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; justify-content: flex-start; padding-block: 2px; }
+.sf-filter .sf-toc > a:first-child { margin-left: auto; }
 .sf-filter .sf-toc::-webkit-scrollbar { display: none; }
 .sf-toc a { white-space: nowrap; padding: 5px 12px; background: var(--color-panel); transition: color .15s, background-color .15s, border-color .15s; }
 .sf-toc a[aria-current="true"] { background: var(--color-fg); border-color: var(--color-fg); color: #fff; }
 .sf-fnote { margin-top: calc(-1 * var(--cds-gap-xl) + 10px) !important; max-width: none !important; }
-@media (max-width: 900px) {
+@media (max-width: 1320px) {
+  .sf-filter .sf-toc > a:first-child { margin-left: 0; }
   .sf-filter { flex-wrap: wrap; row-gap: 8px; padding-block: 8px; }
   .sf-filter .zf { flex: 1 1 100%; }
   .sf-filter select { flex: 1; max-width: none; font-size: 16px; }
@@ -249,6 +251,16 @@ body { font-size: var(--cds-font-size-body); -webkit-text-size-adjust: 100%; }
   .sf-card { padding: 16px; }
   .sf-oc .bd { padding: 16px 16px 20px; }
   .sf-oc .fc .big { font-size: 25px; }
+}
+/* Текст на всю ширину блоку (було обмеження 70–80ch із шаблону) */
+.sf p, .sf .sf-lede, .sf ul.sf-list { max-width: none; }
+.sf-lede { font-size: 18px; line-height: 1.55; }
+#summary ul.sf-list { gap: 14px 40px; }
+@media (min-width: 1000px) {
+  #summary ul.sf-list { grid-template-columns: 1fr 1fr; padding-left: 0; list-style: none; }
+  #summary ul.sf-list > li { padding-left: 16px; position: relative; }
+  #summary ul.sf-list > li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--sf-s1); }
+  #summary ul.sf-list > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .sf-lb[open] { animation: none; }
