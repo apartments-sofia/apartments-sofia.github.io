@@ -68,6 +68,9 @@ tbody tr:last-child > * { border-bottom: 0; }
 tbody th { position: sticky; inset-inline-start: 0; background: var(--panel); font-weight: 600; min-width: 150px; box-shadow: 1px 0 0 var(--line-2); }
 thead th:first-child { position: sticky; inset-inline-start: 0; z-index: 1; box-shadow: 1px 0 0 var(--line-2); }
 @media (max-width: 640px) { tbody th { min-width: 118px; } th, td { padding-inline: 10px; } }
+thead th { white-space: nowrap; }
+td .muted { display: block; font-size: .85em; margin-top: 2px; white-space: nowrap; }
+@media (min-width: 900px) { tbody th { white-space: nowrap; } }
 td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 thead th.n { text-align: right; }
 tr.sep > * { background: #F6F6F2; color: var(--muted); font-size: 12.5px; font-weight: 600; padding-block: 7px; }
@@ -161,6 +164,10 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
   .tw { overflow: visible; break-inside: avoid; }
   table { min-width: 0; font-size: 7.6pt; }
   th, td { padding: 4pt 5pt; }
+  caption { font-size: 7.6pt; }
+  thead th { font-size: 7pt; line-height: 1.3; }
+  tbody th { white-space: nowrap; }
+  tr.sep > * { font-size: 7.6pt; padding-block: 4pt; }
   tbody th, thead th:first-child { position: static; min-width: 0; }
 }
 </style>
@@ -362,14 +369,14 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
         <thead>
           <tr>
             <th scope="col">Об’єкт</th>
-            <th scope="col" class="n">Ціна, €</th>
-            <th scope="col" class="n">€/м²</th>
-            <th scope="col">До медіани району</th>
-            <th scope="col" class="n">Оренда,<br><span class="num">€/міс.</span></th>
-            <th scope="col" class="n">Валова, %</th>
-            <th scope="col" class="n">Чиста, %</th>
-            <th scope="col" class="n">Метро пішки</th>
-            <th scope="col" class="n">У продажу</th>
+            <th scope="col" class="n">Ціна,<br>€</th>
+            <th scope="col" class="n">Ціна<br>за м², €</th>
+            <th scope="col">До медіани<br>району</th>
+            <th scope="col" class="n">Оренда,<br>€/міс.</th>
+            <th scope="col" class="n">Валова<br>дохідн., %</th>
+            <th scope="col" class="n">Чиста<br>дохідн., %</th>
+            <th scope="col" class="n">Метро<br>пішки</th>
+            <th scope="col" class="n">У продажу,<br>днів</th>
           </tr>
         </thead>
         <tbody>
@@ -378,28 +385,28 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
             <td class="n">265 000</td><td class="n">3 786</td>
             <td>+3% (база 24)</td>
             <td class="n">720–780</td><td class="n">3,3–3,5</td><td class="n">1,9–2,7</td>
-            <td class="n">2,4 км</td><td class="n">50 дн.</td>
+            <td class="n">2,4 км</td><td class="n">50</td>
           </tr>
           <tr>
             <th scope="row">2. Дървеница</th>
             <td class="n">249 000<br><span class="muted">+ ~11 000 меблі</span></td><td class="n">3 609</td>
             <td>не рахуємо: аналогів лише 3</td>
             <td class="n">730–750</td><td class="n">3,4–3,5</td><td class="n">1,9–2,7</td>
-            <td class="n">1,3 км</td><td class="n">36 дн.</td>
+            <td class="n">1,3 км</td><td class="n">36</td>
           </tr>
           <tr>
             <th scope="row">3. Малинова долина</th>
             <td class="n">248 850</td><td class="n">3 072</td>
             <td>−6% (база 29)</td>
             <td class="n">710–750</td><td class="n">3,4–3,6</td><td class="n">2,0–2,8</td>
-            <td class="n">3,1 км</td><td class="n">219 дн.</td>
+            <td class="n">3,1 км</td><td class="n">219</td>
           </tr>
           <tr>
             <th scope="row">4. Овча купел 2</th>
             <td class="n">238 000</td><td class="n">4 250<br><span class="muted">без тераси</span></td>
-            <td>не порівнюємо: у 75 м² входить тераса 19 м²</td>
+            <td>не порівнюємо: у 75 м² входить тераса</td>
             <td class="n">640–670</td><td class="n">3,2–3,4</td><td class="n">1,8–2,6</td>
-            <td class="n">0,45 км</td><td class="n">34 дн.</td>
+            <td class="n">0,45 км</td><td class="n">34</td>
           </tr>
           <tr class="sep"><th scope="row" colspan="9">Для довідки — Дружба 2, не рекомендуємо</th></tr>
           <tr class="ref">
@@ -407,14 +414,14 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
             <td class="n">225 000</td><td class="n">3 309</td>
             <td>−6% (база 6)</td>
             <td class="n">700–740</td><td class="n">3,7–3,9</td><td class="n">2,2–3,0</td>
-            <td class="n">0,4 км</td><td class="n">23 дн.</td>
+            <td class="n">0,4 км</td><td class="n">23</td>
           </tr>
           <tr class="ref">
             <th scope="row">Дружба 2 · 65 м²</th>
             <td class="n">225 000</td><td class="n">3 462</td>
             <td>−1% (база 6)</td>
             <td class="n">700–750</td><td class="n">3,7–4,0</td><td class="n">2,1–3,0</td>
-            <td class="n">0,4 км</td><td class="n">100 дн.</td>
+            <td class="n">0,4 км</td><td class="n">100</td>
           </tr>
         </tbody>
       </table>
