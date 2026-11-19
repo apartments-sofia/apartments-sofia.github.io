@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Рекомендовані апартаменти в Софії</title>
+<meta name="description" content="Підсумок оглядів на місці та аналітики ринку для чотирьох апартаментів у Софії: Манастирски ливади, Дървеница, Малинова долина, Овча купел 2. Ціни перевірено 19.11.2026.">
+<meta property="og:title" content="Рекомендовані апартаменти в Софії">
+<meta property="og:description" content="Огляди на місці й аналітика: ціна до ринку, прогноз оренди, дохідність, ризики. Ціни перевірено 19.11.2026.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF7; --panel: #FFFFFF; --fg: #1D2228; --muted: #5C636D; --line: #E2E2DC; --line-2: #ECECE6;
+  --ok: #1E7A46; --ok-bg: #EAF4EE; --warn: #8A5200; --warn-bg: #FBF1E2; --bad: #B42318;
+  --accent: #2563A8; --accent-bg: #EAF1F9;
+  --sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --r: 8px;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--fg); }
+body { font-family: var(--sans); font-size: 15px; line-height: 1.55; -webkit-text-size-adjust: 100%; }
+a { color: var(--accent); text-underline-offset: 2px; }
+.wrap { display: grid; gap: 48px; padding-block: 28px 56px; padding-inline: max(16px, calc((100% - 1120px) / 2)); }
+@media (min-width: 720px) { .wrap { padding-inline: max(32px, calc((100% - 1120px) / 2)); } }
+h1, h2 { font-family: var(--serif); font-weight: 400; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(1.9rem, 4.4vw, 2.75rem); line-height: 1.1; }
+h2 { font-size: 1.65rem; line-height: 1.2; }
+h3 { font-size: 1.06rem; font-weight: 600; margin: 0; }
+p { margin: 0; max-width: 72ch; }
+ul { margin: 0; padding-left: 1.15em; display: grid; gap: 4px; }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: 12.5px; color: var(--muted); }
+.muted { color: var(--muted); font-size: 13px; }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+section { display: grid; gap: 18px; scroll-margin-top: 16px; }
+section > header { display: grid; gap: 6px; }
+
+/* Шапка */
+.head { display: grid; gap: 14px; }
+.lede { font-size: 1.08rem; line-height: 1.55; max-width: 68ch; }
+.order { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; margin-top: 6px; }
+.order a { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: start; text-decoration: none; color: inherit; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; }
+.order a:hover { border-color: #C9CBC4; }
+.order .rank { grid-row: span 2; font-family: var(--serif); font-size: 2rem; line-height: 1; color: var(--accent); }
+.order b { font-weight: 600; }
+.order span { font-size: 13px; color: var(--muted); }
+
+/* KPI */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.kpi .v { font-family: var(--serif); font-size: 1.6rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi .l { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+/* Таблиця порівняння */
+.tw { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); }
+.tw:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 860px; font-size: 14px; }
+caption { text-align: left; padding: 12px 14px 0; font-size: 13px; color: var(--muted); }
+th, td { padding: 10px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line-2); }
+thead th { font-size: 12.5px; font-weight: 600; color: var(--muted); background: #F6F6F2; white-space: normal; vertical-align: bottom; }
+tbody tr:last-child > * { border-bottom: 0; }
+tbody th { position: sticky; inset-inline-start: 0; background: var(--panel); font-weight: 600; min-width: 150px; box-shadow: 1px 0 0 var(--line-2); }
+thead th:first-child { position: sticky; inset-inline-start: 0; z-index: 1; box-shadow: 1px 0 0 var(--line-2); }
+@media (max-width: 640px) { tbody th { min-width: 118px; } th, td { padding-inline: 10px; } }
+td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+thead th.n { text-align: right; }
+tr.sep > * { background: #F6F6F2; color: var(--muted); font-size: 12.5px; font-weight: 600; padding-block: 7px; }
+tr.ref > th, tr.ref > td { color: var(--muted); }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+.t-ok { background: var(--ok-bg); color: var(--ok); }
+.t-mid { background: #EFEFEA; color: #474D55; }
+.t-low { background: var(--warn-bg); color: var(--warn); }
+
+/* Картки об'єктів */
+.obj { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; }
+@media (min-width: 900px) { .obj { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+.media { display: grid; align-content: start; align-self: start; }
+@media (min-width: 900px) { .media { position: sticky; top: 0; } }
+.gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; align-content: start; }
+.media .links { padding: 12px 16px 14px; border-bottom: 1px solid var(--line-2); }
+@media (min-width: 900px) { .media .links { border-bottom: 0; } }
+.gal img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3 / 2; }
+.gal img:first-child { grid-column: 1 / -1; }
+.body { padding: 20px 22px 22px; display: grid; gap: 16px; align-content: start; }
+.ttl { display: grid; gap: 4px; }
+.ttl .pr { font-size: 12.5px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+.ttl h3 { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; line-height: 1.2; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px 14px; padding: 12px 0; border-block: 1px solid var(--line-2); }
+.facts div { display: grid; gap: 1px; }
+.facts b { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.facts span { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+.two { display: grid; gap: 16px; }
+@media (min-width: 640px) { .two { grid-template-columns: 1fr 1fr; } }
+.blk { display: grid; gap: 6px; align-content: start; }
+.blk h4 { margin: 0; font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+.blk li { font-size: 14px; }
+.plus li::marker { content: "+  "; color: var(--ok); font-weight: 700; }
+.info li::marker { content: "•  "; color: var(--muted); }
+.minus li::marker { content: "–  "; color: var(--bad); font-weight: 700; }
+.ask { background: var(--warn-bg); border-radius: 6px; padding: 12px 14px; display: grid; gap: 6px; }
+.ask h4 { color: var(--warn); }
+.links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; }
+.verdict { font-size: 14.5px; border-left: 3px solid var(--accent); padding-left: 12px; }
+
+/* Дружба 2 */
+.dz-grid { display: grid; gap: 14px; }
+@media (min-width: 760px) { .dz-grid { grid-template-columns: 1fr 1fr; } }
+.dz { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; display: grid; gap: 10px; align-content: start; }
+.dz .top { display: grid; grid-template-columns: 112px 1fr; gap: 14px; align-items: start; }
+.dz img { width: 112px; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; display: block; }
+.note { background: var(--accent-bg); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 6px; }
+
+/* Ринок, методика */
+.cols { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
+.box li { font-size: 14px; }
+.foot { border-top: 1px solid var(--line); padding-top: 16px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
+
+@media print {
+  @page { size: A4; margin: 11mm 10mm; }
+  html, body { background: #fff; }
+  body { font-size: 9pt; line-height: 1.45; }
+  .wrap { display: block; padding: 0; }
+  .wrap > * + * { margin-top: 16pt; }
+  section { display: block; }
+  section > header { margin-bottom: 8pt; }
+  section > * + * { margin-top: 8pt; }
+  h1 { font-size: 22pt; }
+  h2 { font-size: 15pt; break-after: avoid; }
+  .lede { font-size: 10.5pt; }
+  .order { grid-template-columns: repeat(4, 1fr); gap: 6pt; }
+  .order a { padding: 8pt; }
+  .order .rank { font-size: 18pt; }
+  .obj { grid-template-columns: 36% 1fr; break-inside: avoid; }
+  .obj + .obj { margin-top: 10pt; }
+  .media { position: static; }
+  .body { padding: 10pt 12pt; gap: 8pt; }
+  .ttl h3 { font-size: 13pt; }
+  .facts { padding: 6pt 0; gap: 6pt; }
+  .facts b { font-size: 11pt; }
+  .two { grid-template-columns: 1fr 1fr; gap: 10pt; }
+  .blk li, .box li { font-size: 8.5pt; }
+  .media .links { padding: 6pt 8pt; font-size: 8.5pt; }
+  .dz-grid { grid-template-columns: 1fr 1fr; gap: 8pt; }
+  .dz, .box, .note, .kpi { break-inside: avoid; }
+  .note { margin-top: 8pt; }
+  section[aria-labelledby="h-dz"], section[aria-labelledby="h-cmp"] { break-before: page; }
+  .foot { font-size: 7pt; gap: 2pt; padding-top: 6pt; }
+  .wrap > .foot { margin-top: 10pt; }
+  .box { padding: 8pt 10pt; gap: 4pt; }
+  .box li { font-size: 7.8pt; }
+  .box ul { gap: 2pt; }
+  caption { padding-top: 6pt; }
+  .cols { grid-template-columns: repeat(2, 1fr); gap: 8pt; }
+  .tw { overflow: visible; break-inside: avoid; }
+  table { min-width: 0; font-size: 7.6pt; }
+  th, td { padding: 4pt 5pt; }
+  tbody th, thead th:first-child { position: static; min-width: 0; }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header class="head">
+    <p class="eyebrow">Софія · огляди на місці й аналітика · 19.11.2026</p>
+    <h1>Рекомендовані апартаменти в Софії</h1>
+    <p class="lede">Після живого огляду апартаментів на місці до розгляду рекомендуємо чотири — у порядку пріоритету нижче. За цифрами вони близькі: чиста дохідність у стрес-тесті 1,8–2,8% на рік, різниця між об’єктами — у межах похибки. Тому порядок визначили враження з огляду: район, будинок і стан квартири. Ціни всіх оголошень перевірено 19.11.2026 — не змінились.</p>
+    <nav class="order" aria-label="Об’єкти в порядку пріоритету">
+      <a href="#o12"><span class="rank">1</span><b>Манастирски ливади</b><span>70 м² · 265 000 €</span></a>
+      <a href="#o13"><span class="rank">2</span><b>Дървеница</b><span>69 м² · 249 000 € + меблі</span></a>
+      <a href="#o14"><span class="rank">3</span><b>Малинова долина</b><span>81 м² · 248 850 €</span></a>
+      <a href="#o10"><span class="rank">4</span><b>Овча купел 2</b><span>56 м² + тераса · 238 000 €</span></a>
+    </nav>
+  </header>
+
+  <section aria-labelledby="h-obj">
+    <header><h2 id="h-obj">Рекомендовані об’єкти</h2></header>
+
+    <article class="obj" id="o12">
+      <div class="media">
+        <div class="gal">
+          <img src="../img/12-0.jpg" alt="Манастирски ливади — фото з оголошення" width="1400" height="933" fetchpriority="high">
+          <img src="../img/12-1-s.jpg" alt="" width="900" height="600" loading="lazy">
+          <img src="../img/12-2-s.jpg" alt="" width="900" height="600" loading="lazy">
+          <img src="../img/12-3-s.jpg" alt="" width="900" height="600" loading="lazy">
+        </div>
+        <div class="links"><a href="https://www.yavlena.com/bg/175909">Оголошення</a><a href="https://maps.app.goo.gl/vPejsE19H6HS72Ng9">На карті</a><a href="https://apartments-sofia.github.io/2026-11/?zone=%D0%9C%D0%B0%D0%BD%D0%B0%D1%81%D1%82%D0%B8%D1%80%D1%81%D0%BA%D0%B8%20%D0%BB%D0%B8%D0%B2%D0%B0%D0%B4%D0%B8">Повний аналіз району</a></div>
+      </div>
+      <div class="body">
+        <div class="ttl"><h3>1. Манастирски ливади – Запад</h3><p class="muted">70 м², 1 спальня, 2-й поверх, будинок 2023 року, нові меблі й техніка, газовий котел і кондиціонер</p></div>
+        <div class="facts">
+          <div><b>265 000 €</b><span>3 786 €/м²</span></div>
+          <div><b>+3%</b><span>до медіани району (3 669 €/м², 24 оголошення)</span></div>
+          <div><b>720–780 €</b><span>прогноз оренди</span></div>
+          <div><b>1,9–2,7%</b><span>чиста дохідність</span></div>
+        </div>
+        <p class="verdict">Усталений престижний район, ставки оренди — серед найвищих у добірці. Ціна відповідає ринку: без переплати, але й без знижки.</p>
+        <div class="two">
+          <div class="blk plus"><h4>Огляд на місці</h4><ul>
+            <li>Престижний усталений район</li>
+            <li>Невисока щільність забудови</li>
+          </ul></div>
+          <div class="blk"><h4>Наші дані</h4><ul>
+            <li>Медіана ставок оренди в районі — 700 € на місяць; оголошень про оренду тут найбільше серед районів добірки (108 на imot.bg).</li>
+            <li>55% двокімнатних квартир у продажу в районі — у будинках, що будуються (по району загалом, не обов’язково поруч з об’єктом).</li>
+            <li>Конкуренція при перепродажі висока: у районі 85 оголошень про продаж готових двокімнатних квартир у межах ±15% від ціни об’єкта.</li>
+            <li>Найближча станція метро — на бульв. «Цар Борис III», 2,4 км пішки (~32 хв); до центру — 6,5 км (~10 хв автомобілем без заторів).</li>
+          </ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="obj" id="o13">
+      <div class="media">
+        <div class="gal">
+          <img src="../img/13-0.jpg" alt="Дървеница — фото з оголошення" width="1280" height="960" loading="lazy">
+          <img src="../img/13-1-s.jpg" alt="" width="900" height="600" loading="lazy">
+          <img src="../img/13-2-s.jpg" alt="" width="900" height="600" loading="lazy">
+          <img src="../img/13-3-s.jpg" alt="" width="900" height="600" loading="lazy">
+        </div>
+        <div class="links"><a href="https://www.yavlena.com/bg/176514">Оголошення</a><a href="https://maps.app.goo.gl/QpHPnmeQSZxVXnKi9">На карті</a><a href="https://apartments-sofia.github.io/2026-11/?zone=%D0%94%D1%8A%D1%80%D0%B2%D0%B5%D0%BD%D0%B8%D1%86%D0%B0">Повний аналіз району</a></div>
+      </div>
+      <div class="body">
+        <div class="ttl"><h3>2. Дървеница</h3><p class="muted">69 м², 1 спальня, 2-й поверх із 5, закритий комплекс 2024 року, без меблів</p></div>
+        <div class="facts">
+          <div><b>249 000 €</b><span>3 609 €/м²; з меблями ~260 000 €</span></div>
+          <div><b>~11 000 €</b><span>кухня й меблі (оцінка)</span></div>
+          <div><b>730–750 €</b><span>прогноз оренди</span></div>
+          <div><b>1,9–2,7%</b><span>чиста дохідність (з урахуванням меблів)</span></div>
+        </div>
+        <p class="verdict">У районі найменша в добірці частка будинків, що будуються, і найменше конкурентів при перепродажі. Хороший комплекс, але квартиру треба умеблювати, а поверх низький.</p>
+        <div class="two">
+          <div class="blk"><h4>Огляд на місці</h4>
+            <ul class="plus"><li>Хороша прибудинкова територія</li><li>Хороша комплектація санвузла</li><li>Неподалік міський парк (поки не облаштований, є проєкт реконструкції)</li><li>До метро — 2 зупинки автобусом, до зупинки 8–10 хв пішки</li></ul>
+            <ul class="info"><li>Опалення — лише кондиціонери</li></ul>
+            <ul class="minus"><li>Навколо — майданчики під будівництво</li><li>В’їзд у мікрорайон з боку головної вулиці вздовж застарілих будівель</li><li>Вікна на дитячий майданчик (шумно)</li><li>Низький поверх</li><li>Немає меблів</li></ul>
+          </div>
+          <div class="blk"><h4>Наші дані</h4><ul>
+            <li>Лише 20% двокімнатних квартир у продажу в районі — у будинках, що будуються; це найменше в добірці.</li>
+            <li>Конкурентів при перепродажі найменше в добірці: 27 оголошень про продаж готових двокімнатних квартир у Дървеница та сусідніх Младост 1 і Мусагеница в межах ±15% від ціни об’єкта.</li>
+            <li>Найближча станція метро «Младост 1» — 1,3 км пішки (~18 хв).</li>
+          </ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="obj" id="o14">
+      <div class="media">
+        <div class="gal">
+          <img src="../img/14-0.jpg" alt="Малинова долина — фото з оголошення" width="1400" height="934" loading="lazy">
+          <img src="../img/14-1-s.jpg" alt="" width="900" height="600" loading="lazy">
+          <img src="../img/14-2-s.jpg" alt="" width="900" height="600" loading="lazy">
+          <img src="../img/14-3-s.jpg" alt="" width="900" height="600" loading="lazy">
+        </div>
+        <div class="links"><a href="https://www.yavlena.com/bg/168713">Оголошення</a><a href="https://maps.app.goo.gl/EmGtFgPHdpdQSEVY7">На карті</a><a href="https://apartments-sofia.github.io/2026-11/?zone=%D0%9C%D0%B0%D0%BB%D0%B8%D0%BD%D0%BE%D0%B2%D0%B0%20%D0%B4%D0%BE%D0%BB%D0%B8%D0%BD%D0%B0">Повний аналіз району</a></div>
+      </div>
+      <div class="body">
+        <div class="ttl"><h3>3. Малинова долина</h3><p class="muted">81 м², 1 спальня, 7-й (останній) поверх, ліфт, тераса на всю ширину квартири, будинок введено в експлуатацію (Акт 16) у листопаді 2025 року, нові меблі на замовлення</p></div>
+        <div class="facts">
+          <div><b>248 850 €</b><span>3 072 €/м² — найнижча в добірці</span></div>
+          <div><b>−6%</b><span>до медіани району (3 278 €/м², 29 оголошень)</span></div>
+          <div><b>710–750 €</b><span>прогноз оренди</span></div>
+          <div><b>2,0–2,8%</b><span>чиста дохідність</span></div>
+        </div>
+        <p class="verdict">Найнижча ціна за м² і найбільша площа серед рекомендованих.</p>
+        <div class="two">
+          <div class="blk"><h4>Огляд на місці</h4>
+            <ul class="plus"><li>Останній поверх із терасою</li><li>Поруч Студентски град</li></ul>
+            <ul class="minus"><li>Новий район, активна забудова</li><li>Зараз здається подобово (Airbnb) за 30 € на добу</li></ul>
+          </div>
+          <div class="blk"><h4>Наші дані</h4><ul>
+            <li>65% двокімнатних квартир у продажу в районі — у будинках, що будуються (медіана ~2 400 €/м²); це збігається з враженням з огляду.</li>
+            <li>Конкуренція при перепродажі найвища в добірці: у районі 92 оголошення про продаж готових двокімнатних квартир у межах ±15% від ціни об’єкта.</li>
+            <li>У продажу з 14.04 — 219 днів, найдовше в добірці: аргумент для торгу.</li>
+            <li>Метро далеко: найближча станція «Г. М. Димитров» — 3,1 км пішки (~41 хв). Аеропорт — 10 км (~14 хв автомобілем без заторів).</li>
+            <li>Подобова оренда за 30 € на добу дасть стільки ж, скільки довгострокова за нашим прогнозом (~730 € на місяць), лише при ~24 зайнятих ночах на місяць — і це без витрат на прибирання та комісії платформи (розрахунок).</li>
+          </ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="obj" id="o10">
+      <div class="media">
+        <div class="gal">
+          <img src="../img/10-0.jpg" alt="Овча купел 2 — фото з оголошення" width="1400" height="934" loading="lazy">
+          <img src="../img/10-1-s.jpg" alt="" width="900" height="600" loading="lazy">
+          <img src="../img/10-2-s.jpg" alt="" width="900" height="600" loading="lazy">
+          <img src="../img/10-3-s.jpg" alt="" width="900" height="600" loading="lazy">
+        </div>
+        <div class="links"><a href="https://www.imot.bg/obiava-1b179217453974987-prodava-dvustaen-apartament-grad-sofiya-ovcha-kupel-2">Оголошення</a><a href="https://maps.app.goo.gl/rxwBw6VGmaxxyDA86">На карті</a><a href="https://apartments-sofia.github.io/2026-11/?zone=%D0%9E%D0%B2%D1%87%D0%B0%20%D0%BA%D1%83%D0%BF%D0%B5%D0%BB">Повний аналіз району</a></div>
+      </div>
+      <div class="body">
+        <div class="ttl"><h3>4. Овча купел 2</h3><p class="muted">56 м² + тераса 19 м² (разом 75 м²), 1 спальня, 7-й (останній) поверх, будинок від забудовника Idea Buildings, введений в експлуатацію (Акт 16) у 2025 році, газовий котел, дизайнерський ремонт</p></div>
+        <div class="facts">
+          <div><b>238 000 €</b><span>4 250 €/м² — на площу без тераси</span></div>
+          <div><b>640–670 €</b><span>прогноз оренди (за аналогами ~56 м²)</span></div>
+          <div><b>3,2–3,4%</b><span>валова дохідність</span></div>
+          <div><b>1,8–2,6%</b><span>чиста дохідність</span></div>
+        </div>
+        <p class="verdict">Найнижча ціна серед рекомендованих, новий будинок, метро поруч. Слабкі місця для перепродажу: тераса входить у площу оголошення, тож ціна за м² житлової площі висока, а в районі найбільша в добірці частка будинків, що будуються. Тому ліквідність при перепродажі — нижче середньої.</p>
+        <div class="two">
+          <div class="blk"><h4>Огляд на місці</h4>
+            <ul class="plus"><li>Новий будинок від відомого забудовника</li><li>Хороший ремонт</li><li>Двоконтурний котел</li><li>Велика тераса вздовж усієї квартири</li><li>Поруч метро</li><li>Навпроти — сквер</li><li>У продажу є паркомісце у дворі (25 000 €) і підземний гараж (40 000 €)</li></ul>
+            <ul class="minus"><li>Малий санвузол: душова заходить на загальну зону</li><li>Відстань до аеропорту — під питанням (див. «Наші дані»)</li><li>Висота стель, імовірно, 2,65–2,70 м (не виміряно)</li><li>Немає кондиціонерів</li></ul>
+          </div>
+          <div class="blk"><h4>Наші дані</h4><ul>
+            <li>Станція метро «Мизия / НБУ» — 450 м пішки (~6 хв), як і зазначено в оголошенні.</li>
+            <li>Аеропорт (термінал 2) — 17,8 км, ~23 хв автомобілем без заторів; центр — 6,7 км (~10 хв).</li>
+            <li>Паркомісце й гараж: в оголошенні — 28 000 і 45 000 €, на огляді назвали 25 000 і 40 000 €.</li>
+          </ul></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section aria-labelledby="h-dz">
+    <header>
+      <h2 id="h-dz">Дружба 2 — для довідки, не рекомендуємо</h2>
+      <p>За цифрами Дружба 2 сильна: тут найвища валова дохідність у цьому звіті (3,7–4,0%), ціни на рівні медіани району або нижче, а до станції метро на лінії до аеропорту — 5 хвилин пішки. Але за результатами огляду ці квартири не рекомендуємо: обидві невеликі; біля квартири 68 м² — неблагоустроєна територія й будівництво, у квартирі 65 м² немає передпокою й можливий шум від тунелю метро.</p>
+    </header>
+    <div class="dz-grid">
+      <article class="dz">
+        <div class="top">
+          <img src="../img/1-0-s.jpg" alt="Дружба 2, 68 м² — фото з оголошення" width="900" height="600" loading="lazy">
+          <div><h3>Дружба 2 · 68 м²</h3><p class="muted">68 м², 4-й поверх із 9 (за оголошенням; на огляді — 3-й), будинок 2025 року · 225 000 € (3 309 €/м², −6% до медіани району)</p></div>
+        </div>
+        <div class="blk minus"><h4>Чому ні — огляд</h4><ul><li>Невелика квартира</li><li>Неблагоустроєна територія навколо</li><li>Поруч майданчики під будівництво</li></ul></div>
+        <div class="blk info"><h4>Інше з огляду</h4><ul><li>Хороші меблі й техніка</li><li>Загальні зони під’їзду — середні</li><li>Квартиру здавали за 750 €/міс. (наш прогноз — 700–740 €)</li><li>Метро — 8 хв пішки (за нашим заміром — 380 м)</li><li>Вікна на схід</li></ul></div>
+        <p class="muted">У другому під’їзді є схожа квартира за ту ж ціну, вікна — на ділянку під забудову.</p>
+      </article>
+      <article class="dz">
+        <div class="top">
+          <img src="../img/4-0-s.jpg" alt="Дружба 2, 65 м² — фото з оголошення" width="900" height="600" loading="lazy">
+          <div><h3>Дружба 2 · 65 м²</h3><p class="muted">65 м², 6-й поверх із 7, комплекс «Нова Дружба» 2021 року · 225 000 € (3 462 €/м², −1% до медіани району)</p></div>
+        </div>
+        <div class="blk minus"><h4>Чому ні — огляд</h4><ul><li>Невелика квартира</li><li>Немає передпокою: вхід одразу в кухню-студію</li><li>Ризик шуму від тунелю метро</li><li>Немає душової перегородки (треба докупити)</li></ul></div>
+        <div class="blk info"><h4>Інше з огляду</h4><ul><li>Дуже хороші загальні зони під’їзду</li><li>Високі стелі</li><li>Посудомийна машина</li><li>Центральне опалення (ТЕЦ) і кондиціонери</li><li>Метро — 4 хв пішки (за нашим заміром — 370 м)</li><li>Вікна на захід</li></ul></div>
+        <p class="muted">У продажу з 11.08 — 100 днів без зміни ціни.</p>
+      </article>
+    </div>
+    <div class="note">
+      <h3>Район загалом</h3>
+      <p>47% двокімнатних квартир у продажу в Дружбі 2 — у будинках, що будуються (медіана ~2 240 €/м² проти ~3 500 €/м² у готових нових мебльованих). Це майбутня конкуренція при перепродажі: у міру здачі цих будинків продавців стане більше. Ставки оренди квартир з 1 спальнею в районі — 620–660 € на місяць (за даними різних порталів).</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-cmp">
+    <header>
+      <h2 id="h-cmp">Порівняння</h2>
+      <p class="muted">Ціни — на 19.11.2026; ринкові дані — зріз 12–13.11.2026. «Медіана району» — медіанна ціна за м² нових (2018+) готових мебльованих двокімнатних квартир району на imot.bg. У дужках — кількість оголошень у базі. Відхилення до ±10% — у межах похибки бази.</p>
+    </header>
+    <div class="tw" tabindex="0" role="region" aria-labelledby="cap-cmp">
+      <table>
+        <caption id="cap-cmp">Рекомендовані об’єкти в порядку пріоритету; нижче — Дружба 2 для довідки</caption>
+        <thead>
+          <tr>
+            <th scope="col">Об’єкт</th>
+            <th scope="col" class="n">Ціна, €</th>
+            <th scope="col" class="n">€/м²</th>
+            <th scope="col">До медіани району</th>
+            <th scope="col" class="n">Оренда,<br><span class="num">€/міс.</span></th>
+            <th scope="col" class="n">Валова, %</th>
+            <th scope="col" class="n">Чиста, %</th>
+            <th scope="col" class="n">Метро пішки</th>
+            <th scope="col" class="n">У продажу</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1. Манастирски ливади</th>
+            <td class="n">265 000</td><td class="n">3 786</td>
+            <td>+3% (база 24)</td>
+            <td class="n">720–780</td><td class="n">3,3–3,5</td><td class="n">1,9–2,7</td>
+            <td class="n">2,4 км</td><td class="n">50 дн.</td>
+          </tr>
+          <tr>
+            <th scope="row">2. Дървеница</th>
+            <td class="n">249 000<br><span class="muted">+ ~11 000 меблі</span></td><td class="n">3 609</td>
+            <td>не рахуємо: аналогів лише 3</td>
+            <td class="n">730–750</td><td class="n">3,4–3,5</td><td class="n">1,9–2,7</td>
+            <td class="n">1,3 км</td><td class="n">36 дн.</td>
+          </tr>
+          <tr>
+            <th scope="row">3. Малинова долина</th>
+            <td class="n">248 850</td><td class="n">3 072</td>
+            <td>−6% (база 29)</td>
+            <td class="n">710–750</td><td class="n">3,4–3,6</td><td class="n">2,0–2,8</td>
+            <td class="n">3,1 км</td><td class="n">219 дн.</td>
+          </tr>
+          <tr>
+            <th scope="row">4. Овча купел 2</th>
+            <td class="n">238 000</td><td class="n">4 250<br><span class="muted">без тераси</span></td>
+            <td>не порівнюємо: у 75 м² входить тераса 19 м²</td>
+            <td class="n">640–670</td><td class="n">3,2–3,4</td><td class="n">1,8–2,6</td>
+            <td class="n">0,45 км</td><td class="n">34 дн.</td>
+          </tr>
+          <tr class="sep"><th scope="row" colspan="9">Для довідки — Дружба 2, не рекомендуємо</th></tr>
+          <tr class="ref">
+            <th scope="row">Дружба 2 · 68 м²</th>
+            <td class="n">225 000</td><td class="n">3 309</td>
+            <td>−6% (база 6)</td>
+            <td class="n">700–740</td><td class="n">3,7–3,9</td><td class="n">2,2–3,0</td>
+            <td class="n">0,4 км</td><td class="n">23 дн.</td>
+          </tr>
+          <tr class="ref">
+            <th scope="row">Дружба 2 · 65 м²</th>
+            <td class="n">225 000</td><td class="n">3 462</td>
+            <td>−1% (база 6)</td>
+            <td class="n">700–750</td><td class="n">3,7–4,0</td><td class="n">2,1–3,0</td>
+            <td class="n">0,4 км</td><td class="n">100 дн.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">Чиста дохідність — діапазон, у який потрапляють 90% сценаріїв стрес-тесту (податок, простій, внески, витрати на купівлю, нижча ставка в договорі). Метро — пішохідний маршрут за OpenStreetMap від точки, яку колега позначив на карті. Для Дървеница валова й чиста дохідність пораховані з урахуванням меблів (~11 000 €).</p>
+  </section>
+
+  <section aria-labelledby="h-mkt">
+    <header><h2 id="h-mkt">Ринок і що закладено в розрахунок</h2></header>
+    <div class="cols">
+      <div class="box">
+        <h3>Ринок Софії</h3>
+        <ul>
+          <li>Ціни на житло в Болгарії (індекс Національного статистичного інституту за угодами), II кв. 2026: +15,5% за рік; у Софії — +2,4% за квартал.</li>
+          <li>Угод з нерухомістю (усіх типів) у Софії в III кв. 2026 — 7 282, на 21% менше, ніж роком раніше. Ціни ростуть, а угод стає менше.</li>
+          <li>Оренда мебльованих квартир з 1 спальнею в Софії: медіана 599 € на місяць (homes.bg), за місяць без змін. Середня ставка за рік зросла на 2,5% (alo.bg); Best Place прогнозує близько +5% на 2026 рік.</li>
+          <li>З 1 січня 2026 року Болгарія перейшла на євро.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Розрахунок дохідності</h3>
+        <ul>
+          <li>Прогноз оренди — для довгострокової оренди з меблями, за оголошеннями про оренду квартир у новобудовах району площею ±20% від об’єкта (homes.bg та imot.bg).</li>
+          <li>Валова дохідність — річна оренда, поділена на ціну (для Дървеница — на ціну з меблями).</li>
+          <li>Чиста дохідність ураховує податок на оренду 9%, простій 1–1,5 місяця на рік, внески й утримання 300–700 € на рік, витрати на купівлю 4–7% ціни, ставку в договорі на 5% нижчу за ціни оголошень і керування квартирою (0 або 10% оренди).</li>
+          <li>Подобову оренду не прогнозували.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Джерела: огляди на місці (листопад 2026); оголошення imot.bg і yavlena.com — ціни перевірено 19.11.2026; ринкові дані homes.bg, imot.bg, alo.bg — зріз 12–13.11.2026; маршрути — OpenStreetMap (OSRM); Національний статистичний інститут і Агенція з реєстрації Болгарії, Best Place. Розрахунки — оцінка, не інвестиційна порада.</p>
+    <p>Повний аналіз 14 об’єктів, районів і методика: <a href="https://apartments-sofia.github.io/2026-11/">apartments-sofia.github.io/2026-11</a></p>
+  </footer>
+</main>
+</body>
+</html>
