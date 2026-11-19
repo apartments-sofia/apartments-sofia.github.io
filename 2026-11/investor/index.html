@@ -103,9 +103,11 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
 .blk { display: grid; gap: 6px; align-content: start; }
 .blk h4 { margin: 0; font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
 .blk li { font-size: 14px; }
-.plus li::marker { content: "+  "; color: var(--ok); font-weight: 700; }
-.info li::marker { content: "•  "; color: var(--muted); }
-.minus li::marker { content: "–  "; color: var(--bad); font-weight: 700; }
+.plus li, .info li, .minus li { list-style: none; position: relative; }
+.plus li::before, .info li::before, .minus li::before { position: absolute; left: -1.05em; width: 1em; font-weight: 700; }
+.plus li::before { content: "+"; color: var(--ok); }
+.info li::before { content: "•"; color: var(--muted); font-weight: 400; }
+.minus li::before { content: "–"; color: var(--bad); }
 .ask { background: var(--warn-bg); border-radius: 6px; padding: 12px 14px; display: grid; gap: 6px; }
 .ask h4 { color: var(--warn); }
 .links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; }
