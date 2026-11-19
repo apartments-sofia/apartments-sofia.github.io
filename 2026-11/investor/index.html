@@ -128,6 +128,25 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
 .box li { font-size: 14px; }
 .foot { border-top: 1px solid var(--line); padding-top: 16px; font-size: 13px; color: var(--muted); display: grid; gap: 6px; }
 
+/* Купівля */
+.buy { display: grid; gap: 16px; align-items: start; }
+@media (min-width: 900px) { .buy { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px; } }
+.steps { list-style: none; counter-reset: st; margin: 0; padding: 0; display: grid; gap: 0; }
+.steps > li { counter-increment: st; position: relative; padding: 0 0 18px 44px; display: grid; gap: 4px; }
+.steps > li::before { content: counter(st); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-bg); color: var(--accent); font-family: var(--serif); font-size: 1.05rem; display: grid; place-items: center; }
+.steps > li::after { content: ""; position: absolute; left: 14.5px; top: 32px; bottom: 4px; width: 1px; background: var(--line); }
+.steps > li:last-child::after { display: none; }
+.steps h3 { font-size: 1rem; }
+.steps p, .steps li li { font-size: 14.5px; }
+.steps ul { margin-top: 2px; }
+.steps .warn { background: var(--warn-bg); border-radius: 6px; padding: 8px 12px; margin-top: 4px; }
+.costs { display: grid; gap: 14px; }
+.ct { min-width: 0; width: 100%; font-size: 14px; }
+.ct th, .ct td { padding: 7px 0; border-bottom: 1px solid var(--line-2); position: static; box-shadow: none; background: none; font-weight: 400; min-width: 0; }
+.ct th { white-space: normal; text-align: left; }
+.ct td { text-align: right; padding-left: 12px; white-space: nowrap; }
+.ct tr.tot th, .ct tr.tot td { font-weight: 600; border-bottom: 0; }
+
 @media print {
   @page { size: A4; margin: 11mm 10mm; }
   html, body { background: #fff; }
@@ -156,6 +175,13 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
   .dz-grid { grid-template-columns: 1fr 1fr; gap: 8pt; }
   .dz, .box, .note, .kpi { break-inside: avoid; }
   .note { margin-top: 8pt; }
+  section[aria-labelledby="h-buy"] { break-before: page; }
+  .buy { grid-template-columns: 7fr 5fr; gap: 14pt; }
+  .steps > li { padding-bottom: 10pt; break-inside: avoid; }
+  .steps p, .steps li li { font-size: 8.5pt; }
+  .steps h3 { font-size: 9.5pt; }
+  .ct { font-size: 8.5pt; }
+  .costs .muted, .buy > header .muted { font-size: 7.8pt; }
   section[aria-labelledby="h-dz"], section[aria-labelledby="h-cmp"] { break-before: page; }
   .foot { font-size: 7pt; gap: 2pt; padding-top: 6pt; }
   .wrap > .foot { margin-top: 10pt; }
@@ -181,7 +207,7 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
   <header class="head">
     <p class="eyebrow">Софія · огляди на місці й аналітика · 19.11.2026</p>
     <h1>Рекомендовані апартаменти в Софії</h1>
-    <p class="lede">Після живого огляду апартаментів на місці до розгляду рекомендуємо чотири — у порядку пріоритету нижче. За цифрами вони близькі: чиста дохідність у стрес-тесті 1,8–2,8% на рік, різниця між об’єктами — у межах похибки. Тому порядок визначили враження з огляду: район, будинок і стан квартири. Ціни всіх оголошень перевірено 19.11.2026 — не змінились.</p>
+    <p class="lede">Після живого огляду апартаментів на місці до розгляду рекомендуємо чотири — у порядку пріоритету нижче. За цифрами вони близькі: чиста дохідність у стрес-тесті 1,8–2,7% на рік, різниця між об’єктами — у межах похибки. Тому порядок визначили враження з огляду: район, будинок і стан квартири. Ціни всіх оголошень перевірено 19.11.2026 — не змінились.</p>
     <nav class="order" aria-label="Об’єкти в порядку пріоритету">
       <a href="#o12"><span class="rank">1</span><b>Манастирски ливади</b><span>70 м² · 265 000 €</span></a>
       <a href="#o13"><span class="rank">2</span><b>Дървеница</b><span>69 м² · 249 000 € + меблі</span></a>
@@ -209,14 +235,15 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
           <div><b>265 000 €</b><span>3 786 €/м²</span></div>
           <div><b>+3%</b><span>до медіани району (3 669 €/м², 24 оголошення)</span></div>
           <div><b>720–780 €</b><span>прогноз оренди</span></div>
-          <div><b>1,9–2,7%</b><span>чиста дохідність</span></div>
+          <div><b>1,9–2,6%</b><span>чиста дохідність</span></div>
         </div>
         <p class="verdict">Усталений престижний район, ставки оренди — серед найвищих у добірці. Ціна відповідає ринку: без переплати, але й без знижки.</p>
         <div class="two">
-          <div class="blk plus"><h4>Огляд на місці</h4><ul>
+          <div class="blk"><h4>Огляд на місці</h4><ul class="plus">
             <li>Престижний усталений район</li>
             <li>Невисока щільність забудови</li>
-          </ul></div>
+          </ul>
+          <ul class="minus"><li>Можливо, подекуди знадобиться ремонт</li></ul></div>
           <div class="blk"><h4>Наші дані</h4><ul>
             <li>Медіана ставок оренди в районі — 700 € на місяць; оголошень про оренду тут найбільше серед районів добірки (108 на imot.bg).</li>
             <li>55% двокімнатних квартир у продажу в районі — у будинках, що будуються (по району загалом, не обов’язково поруч з об’єктом).</li>
@@ -243,7 +270,7 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
           <div><b>249 000 €</b><span>3 609 €/м²; з меблями ~260 000 €</span></div>
           <div><b>~11 000 €</b><span>кухня й меблі (оцінка)</span></div>
           <div><b>730–750 €</b><span>прогноз оренди</span></div>
-          <div><b>1,9–2,7%</b><span>чиста дохідність (з урахуванням меблів)</span></div>
+          <div><b>1,8–2,6%</b><span>чиста дохідність (з урахуванням меблів)</span></div>
         </div>
         <p class="verdict">У районі найменша в добірці частка будинків, що будуються, і найменше конкурентів при перепродажі. Хороший комплекс, але квартиру треба умеблювати, а поверх низький.</p>
         <div class="two">
@@ -277,7 +304,7 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
           <div><b>248 850 €</b><span>3 072 €/м² — найнижча в добірці</span></div>
           <div><b>−6%</b><span>до медіани району (3 278 €/м², 29 оголошень)</span></div>
           <div><b>710–750 €</b><span>прогноз оренди</span></div>
-          <div><b>2,0–2,8%</b><span>чиста дохідність</span></div>
+          <div><b>1,9–2,7%</b><span>чиста дохідність</span></div>
         </div>
         <p class="verdict">Найнижча ціна за м² і найбільша площа серед рекомендованих.</p>
         <div class="two">
@@ -312,7 +339,7 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
           <div><b>238 000 €</b><span>4 250 €/м² — на площу без тераси</span></div>
           <div><b>640–670 €</b><span>прогноз оренди (за аналогами ~56 м²)</span></div>
           <div><b>3,2–3,4%</b><span>валова дохідність</span></div>
-          <div><b>1,8–2,6%</b><span>чиста дохідність</span></div>
+          <div><b>1,8–2,5%</b><span>чиста дохідність</span></div>
         </div>
         <p class="verdict">Найнижча ціна серед рекомендованих, новий будинок, метро поруч. Слабкі місця для перепродажу: тераса входить у площу оголошення, тож ціна за м² житлової площі висока, а в районі найбільша в добірці частка будинків, що будуються. Тому ліквідність при перепродажі — нижче середньої.</p>
         <div class="two">
@@ -389,28 +416,28 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
             <th scope="row">1. Манастирски ливади</th>
             <td class="n">265 000</td><td class="n">3 786</td>
             <td>+3% (база 24)</td>
-            <td class="n">720–780</td><td class="n">3,3–3,5</td><td class="n">1,9–2,7</td>
+            <td class="n">720–780</td><td class="n">3,3–3,5</td><td class="n">1,9–2,6</td>
             <td class="n">2,4 км</td><td class="c">50</td>
           </tr>
           <tr>
             <th scope="row">2. Дървеница</th>
             <td class="n">249 000<br><span class="muted">+ ~11 000 меблі</span></td><td class="n">3 609</td>
             <td>не рахуємо: аналогів лише 3</td>
-            <td class="n">730–750</td><td class="n">3,4–3,5</td><td class="n">1,9–2,7</td>
+            <td class="n">730–750</td><td class="n">3,4–3,5</td><td class="n">1,8–2,6</td>
             <td class="n">1,3 км</td><td class="c">36</td>
           </tr>
           <tr>
             <th scope="row">3. Малинова долина</th>
             <td class="n">248 850</td><td class="n">3 072</td>
             <td>−6% (база 29)</td>
-            <td class="n">710–750</td><td class="n">3,4–3,6</td><td class="n">2,0–2,8</td>
+            <td class="n">710–750</td><td class="n">3,4–3,6</td><td class="n">1,9–2,7</td>
             <td class="n">3,1 км</td><td class="c">219</td>
           </tr>
           <tr>
             <th scope="row">4. Овча купел 2</th>
             <td class="n">238 000</td><td class="n">4 250<br><span class="muted">без тераси</span></td>
             <td>не порівнюємо: у 75 м² входить тераса</td>
-            <td class="n">640–670</td><td class="n">3,2–3,4</td><td class="n">1,8–2,6</td>
+            <td class="n">640–670</td><td class="n">3,2–3,4</td><td class="n">1,8–2,5</td>
             <td class="n">0,45 км</td><td class="c">34</td>
           </tr>
           <tr class="sep"><th scope="row" colspan="9">Для довідки — Дружба 2, не рекомендуємо</th></tr>
@@ -418,14 +445,14 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
             <th scope="row">Дружба 2 · 68 м²</th>
             <td class="n">225 000</td><td class="n">3 309</td>
             <td>−6% (база 6)</td>
-            <td class="n">700–740</td><td class="n">3,7–3,9</td><td class="n">2,2–3,0</td>
+            <td class="n">700–740</td><td class="n">3,7–3,9</td><td class="n">2,1–2,9</td>
             <td class="n">0,4 км</td><td class="c">23</td>
           </tr>
           <tr class="ref">
             <th scope="row">Дружба 2 · 65 м²</th>
             <td class="n">225 000</td><td class="n">3 462</td>
             <td>−1% (база 6)</td>
-            <td class="n">700–750</td><td class="n">3,7–4,0</td><td class="n">2,1–3,0</td>
+            <td class="n">700–750</td><td class="n">3,7–4,0</td><td class="n">2,1–2,9</td>
             <td class="n">0,4 км</td><td class="c">100</td>
           </tr>
         </tbody>
@@ -451,9 +478,58 @@ tr.ref > th, tr.ref > td { color: var(--muted); }
         <ul>
           <li>Прогноз оренди — для довгострокової оренди з меблями, за оголошеннями про оренду квартир у новобудовах району площею ±20% від об’єкта (homes.bg та imot.bg).</li>
           <li>Валова дохідність — річна оренда, поділена на ціну (для Дървеница — на ціну з меблями).</li>
-          <li>Чиста дохідність ураховує податок на оренду 9%, простій 1–1,5 місяця на рік, внески й утримання 300–700 € на рік, витрати на купівлю 4–7% ціни, ставку в договорі на 5% нижчу за ціни оголошень і керування квартирою (0 або 10% оренди).</li>
+          <li>Чиста дохідність ураховує податок на оренду 9%, простій 1–1,5 місяця на рік, внески й утримання 300–700 € на рік, витрати на купівлю 7,8% ціни (див. «Як проходить купівля»), ставку в договорі на 5% нижчу за ціни оголошень і керування квартирою (0 або 10% оренди).</li>
           <li>Подобову оренду не прогнозували.</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-buy" id="buy">
+    <header>
+      <h2 id="h-buy">Як проходить купівля</h2>
+      <p class="muted">Порядок угоди й витрати покупця — за умовами агентства нерухомості «Явлена».</p>
+    </header>
+    <div class="buy">
+      <ol class="steps">
+        <li><h3>Договір про співпрацю</h3><p>Покупець підписує договір з агентством нерухомості «Явлена».</p></li>
+        <li><h3>Вибір об’єкта</h3><p>Визначення конкретного апартаменту, щодо якого починають переговори з власником.</p></li>
+        <li><h3>Депозит («стоп-капаро»)</h3><p>Покупець підписує договір про депозит і вносить 2 000–3 000 € в агентство, що представляє об’єкт. На час переговорів апартамент знімають із продажу.</p></li>
+        <li><h3>Узгодження ціни</h3><p>Покупець фіксує свою цінову пропозицію; переговори з продавцем ідуть через офіційну електронну пошту агентства.</p>
+          <ul><li>Якщо домовились — угода переходить на наступний етап.</li><li>Якщо ні — депозит повертають покупцеві.</li></ul>
+          <p class="warn"><b>Важливо:</b> якщо продавець приймає ціну, яку покупець офіційно запропонував, а покупець потім відмовляється від угоди на цих умовах, депозит не повертається (за умовами договору про депозит).</p></li>
+        <li><h3>Юридична перевірка</h3><p>Агентство запитує в власника правовстановлювальні та інші потрібні документи й перевіряє юридичну чистоту об’єкта.</p></li>
+        <li><h3>Попередній договір і розрахунки</h3>
+          <ul><li>Підписання попереднього договору купівлі-продажу. Цей етап можна пропустити, якщо сторони готові одразу до нотаріальної угоди.</li><li>Аванс 10% вартості об’єкта — на банківський рахунок продавця.</li><li>Агентство повертає депозит («стоп-капаро»).</li><li>Покупець сплачує комісію агентства — 3,6% вартості об’єкта.</li><li>Сторони узгоджують дату й місце нотаріальної угоди.</li></ul></li>
+        <li><h3>Основний договір і перехід права власності</h3><p>Підписання нотаріального акта, повна оплата вартості, реєстрація переходу права власності на покупця й підписання акта приймання-передачі.</p></li>
+      </ol>
+      <div class="costs">
+        <div class="box">
+          <h3>Витрати покупця за угодою</h3>
+          <table class="ct">
+            <tbody>
+              <tr><th scope="row">Вартість об’єкта</th><td>за домовленістю сторін</td></tr>
+              <tr><th scope="row">Комісія агентства «Явлена»</th><td class="n">3,6%</td></tr>
+              <tr><th scope="row">Нотаріальні збори</th><td class="n">1,0%</td></tr>
+              <tr><th scope="row">Такса за реєстрацію угоди</th><td class="n">0,2%</td></tr>
+              <tr><th scope="row">Державне мито (місцевий податок на придбання)</th><td class="n">3,0%</td></tr>
+              <tr class="tot"><th scope="row">Разом понад ціну</th><td class="n">7,8%</td></tr>
+            </tbody>
+          </table>
+          <p class="muted">Комісію агентства сплачують безготівковим банківським переказом; нотаріальні збори, такса за реєстрацію й державне мито сплачуються в нотаріуса в день підписання основного договору.</p>
+        </div>
+        <div class="box">
+          <h3>Разом із витратами</h3>
+          <table class="ct">
+            <tbody>
+              <tr><th scope="row">1. Манастирски ливади</th><td class="n">~285 700 €</td></tr>
+              <tr><th scope="row">2. Дървеница (з меблями ~11 000 €)</th><td class="n">~279 400 €</td></tr>
+              <tr><th scope="row">3. Малинова долина</th><td class="n">~268 300 €</td></tr>
+              <tr><th scope="row">4. Овча купел 2</th><td class="n">~256 600 €</td></tr>
+            </tbody>
+          </table>
+          <p class="muted">Розрахунок: ціна оголошення + 7,8%. Після торгу сума буде меншою.</p>
+        </div>
       </div>
     </div>
   </section>
